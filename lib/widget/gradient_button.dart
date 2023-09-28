@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
+import 'package:rola_app/styles/colors.dart';
 
 class RolaGradientButton extends StatelessWidget {
   const RolaGradientButton(
@@ -7,11 +8,13 @@ class RolaGradientButton extends StatelessWidget {
       this.icon,
       required this.label,
       this.isOutlined = false,
+      this.changeToWhite = false,
       this.suffixIcon});
   final Widget? icon;
   final Widget? suffixIcon;
   final String label;
   final bool isOutlined;
+  final bool changeToWhite;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,9 @@ class RolaGradientButton extends StatelessWidget {
           label,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w800,
-              color: Theme.of(context).colorScheme.onBackground),
+              color: changeToWhite
+                  ? ColorSystem.black.withOpacity(.8)
+                  : Theme.of(context).colorScheme.onBackground),
         ),
         if (suffixIcon != null) ...[
           const SizedBox(
@@ -58,13 +63,18 @@ class RolaGradientButton extends StatelessWidget {
       onPressed: () {},
       child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(123, 97, 255, 0.6),
-                Color.fromRGBO(0, 136, 239, 1),
-              ],
-              stops: [0.05, 0.8],
+              colors: changeToWhite
+                  ? const [
+                      Colors.white,
+                      Colors.white,
+                    ]
+                  : const [
+                      Color.fromRGBO(123, 97, 255, 0.6),
+                      Color.fromRGBO(0, 136, 239, 1),
+                    ],
+              stops: const [0.05, 0.8],
             ),
           ),
           height: 48,
