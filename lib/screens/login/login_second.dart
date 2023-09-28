@@ -60,11 +60,14 @@ class LoginSecondScreen extends StatelessWidget {
                   const SizedBox(
                     height: 8,
                   ),
-                  const InputField(labelText: 'Password'),
+                  const InputField(
+                    labelText: 'Password',
+                    obscureText: true,
+                  ),
                   const SizedBox(
                     height: 18,
                   ),
-                  const GradientButton(label: 'Login'),
+                  const RolaGradientButton(label: 'Login'),
                   const SizedBox(
                     height: 30,
                   ),

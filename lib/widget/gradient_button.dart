@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 
-class GradientButton extends StatelessWidget {
-  const GradientButton(
-      {super.key, this.icon, required this.label, this.isOutlined = false});
+class RolaGradientButton extends StatelessWidget {
+  const RolaGradientButton(
+      {super.key,
+      this.icon,
+      required this.label,
+      this.isOutlined = false,
+      this.suffixIcon});
   final Widget? icon;
+  final Widget? suffixIcon;
   final String label;
   final bool isOutlined;
 
@@ -24,7 +29,13 @@ class GradientButton extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w800,
               color: Theme.of(context).colorScheme.onBackground),
-        )
+        ),
+        if (suffixIcon != null) ...[
+          const SizedBox(
+            width: 10,
+          ),
+          suffixIcon!,
+        ],
       ],
     );
     if (isOutlined) {

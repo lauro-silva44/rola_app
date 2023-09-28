@@ -9,4 +9,6 @@ class SvgAssets {
 class PngAssets {
   static String mainAssetsFolder = 'assets/images/png';
   static String backgroundLayingOnTheFloor = "$mainAssetsFolder/background.png";
+  static String manWithGlassesVirtual =
+      "$mainAssetsFolder/manWithGlassesVirtual.png";
 }

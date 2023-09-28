@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:rola_app/styles/colors.dart';
 
 class InputField extends StatelessWidget {
-  const InputField({super.key, required this.labelText, this.obscureText});
+  const InputField(
+      {super.key,
+      required this.labelText,
+      this.obscureText,
+      this.changeContrast = false,
+      this.inputFormatters,
+      this.keyboardType});
   final String labelText;
   final bool? obscureText;
+  final bool changeContrast;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: Theme.of(context)
-          .textTheme
-          .bodyMedium!
-          .copyWith(color: Theme.of(context).colorScheme.onBackground),
+      inputFormatters: inputFormatters,
+      keyboardType: keyboardType,
+      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: changeContrast
+              ? ColorSystem.black.withOpacity(.8)
+              : Theme.of(context).colorScheme.onBackground),
       obscureText: obscureText ?? false,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -23,12 +36,17 @@ class InputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
         ),
         filled: true,
-        fillColor: const Color(0xFF2E3B49),
+        fillColor: changeContrast
+            ? Theme.of(context).colorScheme.onBackground
+            : ColorSystem.black.withOpacity(.8),
         contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         hintText: labelText,
-        labelStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.onBackground),
+        hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: changeContrast
+                  ? ColorSystem.black.withOpacity(.8)
+                  : Theme.of(context).colorScheme.onBackground,
+              fontWeight: FontWeight.bold,
+            ),
       ),
     );
   }

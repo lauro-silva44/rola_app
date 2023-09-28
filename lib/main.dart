@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'screens/login/login_second.dart';
+import 'package:rola_app/screens/login/forgot_password.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -26,7 +25,7 @@ class RolaApp extends StatelessWidget {
         colorScheme: kColorScheme,
         useMaterial3: true,
       ),
-      home: const LoginSecondScreen(),
+      home: const ForgotPasswordScreen(),
     );
   }
 }

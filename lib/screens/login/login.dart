@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  const GradientButton(
+                  const RolaGradientButton(
                     label: 'Login',
                   ),
                   const SizedBox(
@@ -97,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  GradientButton(
+                  RolaGradientButton(
                     icon: SvgPicture.asset(SvgAssets.googleLogo),
                     isOutlined: true,
                     label: 'Continue with Google',
@@ -105,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 22,
                   ),
-                  GradientButton(
+                  RolaGradientButton(
                     icon: SvgPicture.asset(SvgAssets.faceLogo),
                     isOutlined: true,
                     label: 'Continue with Facebook',
