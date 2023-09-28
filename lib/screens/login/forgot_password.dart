@@ -49,6 +49,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                           fontWeight: FontWeight.w800,
                           color: Theme.of(context).colorScheme.onBackground),
                     ),
+                    const SizedBox(
+                      height: 18,
+                    ),
                     const InputField(
                       labelText: 'Email address or Mobile Number',
                       changeContrast: true,
