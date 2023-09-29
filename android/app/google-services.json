@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "246064396415",
+    "project_id": "rolaapp-39102",
+    "storage_bucket": "rolaapp-39102.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246064396415:android:58b0e74506b9061fd1a74a",
+        "android_client_info": {
+          "package_name": "rola.silva.lauro.rola_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246064396415-cfc1bba85jhhk61gb7mm9k4vvh39th9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdxJtG7JCwtPTsRw4zhj0vO-41jWhv59k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246064396415-cfc1bba85jhhk61gb7mm9k4vvh39th9j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rola_app/screens/onboarding/get_your_game_on.dart';
-import 'package:rola_app/screens/onboarding/on_boarding_first.dart';
+import 'package:rola_app/screens/signup/signup.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -26,7 +25,7 @@ class RolaApp extends StatelessWidget {
         colorScheme: kColorScheme,
         useMaterial3: true,
       ),
-      home: const OnBoardingScreen(),
+      home: const SignUpScreen(),
     );
   }
 }

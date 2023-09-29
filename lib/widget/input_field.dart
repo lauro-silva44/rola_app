@@ -38,7 +38,7 @@ class InputField extends StatelessWidget {
         filled: true,
         fillColor: changeContrast
             ? Theme.of(context).colorScheme.onBackground
-            : ColorSystem.black.withOpacity(.8),
+            : ColorSystem.black90,
         contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         hintText: labelText,
         hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
