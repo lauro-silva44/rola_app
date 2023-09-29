@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import '../styles/colors.dart';
 
 class RolaDropdown extends StatelessWidget {
-  const RolaDropdown({super.key, required this.items});
+  const RolaDropdown({super.key, required this.items, required this.hint});
   final List<String> items;
+  final String hint;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
-      isExpanded: false,
       icon: const Icon(Icons.keyboard_arrow_down),
       style: Theme.of(context)
           .textTheme
           .bodyMedium!
           .copyWith(color: Theme.of(context).colorScheme.onBackground),
       decoration: InputDecoration(
+        hintText: hint,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(4),

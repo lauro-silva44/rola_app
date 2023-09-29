@@ -50,42 +50,56 @@ class SignUpScreen extends StatelessWidget {
               const Row(
                 children: [
                   Expanded(
-                    child: RolaDropdown(items: ['1', '2', '3', '4']),
+                    child: RolaDropdown(
+                      items: ['1', '2', '3', '4'],
+                      hint: '+1',
+                    ),
                   ),
                   SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 3,
-                    child: InputField(labelText: '*Email Address'),
+                    child: InputField(labelText: '* Email Address'),
                   ),
                 ],
               ),
-              const RolaDropdown(items: ['1', '2', '3', '4']),
-              const RolaDropdown(items: ['1', '2', '3', '4']),
+              const RolaDropdown(
+                items: ['1', '2', '3', '4'],
+                hint: 'City',
+              ),
+              const RolaDropdown(
+                items: ['1', '2', '3', '4'],
+                hint: 'Gender',
+              ),
               Container(
                 decoration: BoxDecoration(
                     color: ColorSystem.black90,
                     borderRadius: BorderRadius.circular(4)),
-                child: const Row(
+                child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: InputField(
                         labelText: 'Birthday',
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: RolaDropdown(
+                        hint: 'MM',
                         items: ['1', '2', '3', '4'],
                       ),
                     ),
                     Expanded(
                       child: RolaDropdown(
-                        items: ['1', '2', '3', '4'],
+                        hint: 'DD',
+                        items:
+                            List.generate(31, (index) => (index + 1).toString())
+                                .toList(),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: RolaDropdown(
+                        hint: 'YYYY',
                         items: ['1', '2', '3', '4'],
                       ),
                     ),

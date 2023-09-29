@@ -14,6 +14,7 @@ class PngAssets {
   static String backgroundLayingOnTheFloor = "$mainAssetsFolder/background.png";
   static String manLayingPlaying = "$mainAssetsFolder/layingPlaying.png";
   static String manPlayingFootball = "$mainAssetsFolder/manPlayingFootball.png";
+  static String snowboarding = "$mainAssetsFolder/snowboarding.png";
   static String manWithGlassesVirtual =
       "$mainAssetsFolder/manWithGlassesVirtual.png";
 }
