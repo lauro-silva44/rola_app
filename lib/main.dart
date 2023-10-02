@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rola_app/screens/explore/explore.dart';
-import 'package:rola_app/screens/signup/signup.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -21,7 +19,7 @@ class RolaApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.manropeTextTheme(),
+        fontFamily: 'Manrope',
         scaffoldBackgroundColor: kColorScheme.background,
         appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
         colorScheme: kColorScheme,
