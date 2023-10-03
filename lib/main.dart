@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rola_app/screens/explore/explore.dart';
+import 'package:rola_app/screens/login/login.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -25,7 +26,7 @@ class RolaApp extends StatelessWidget {
         colorScheme: kColorScheme,
         useMaterial3: true,
       ),
-      home: const ExploreScreen(),
+      home: const LoginScreen(),
     );
   }
 }

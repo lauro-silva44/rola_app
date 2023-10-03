@@ -9,6 +9,7 @@ class SvgAssets {
   static String rateReviewRewards = "$mainAssetsFolder/rateReviewRewards.svg";
   static String rolaLogoWhite = "$mainAssetsFolder/rolaLogoWhite.svg";
   static String notificationsAlt = "$mainAssetsFolder/notifications_alt.svg";
+  static String searchAlt = "$mainAssetsFolder/search_alt.svg";
 }
 
 class PngAssets {
@@ -18,7 +19,7 @@ class PngAssets {
   static String manPlayingFootball = "$mainAssetsFolder/manPlayingFootball.png";
   static String athlete = "$mainAssetsFolder/athlete.png";
   static String basketBlack = "$mainAssetsFolder/basketBlack.png";
-  static String basketOrange = "$mainAssetsFolder/basketBlack.png";
+  static String basketOrange = "$mainAssetsFolder/basketOrange.png";
   static String snowboarding = "$mainAssetsFolder/snowboarding.png";
   static String manWithGlassesVirtual =
       "$mainAssetsFolder/manWithGlassesVirtual.png";

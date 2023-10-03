@@ -3,10 +3,11 @@ part 'activity.g.dart';
 
 @JsonSerializable()
 class Activity {
-  const Activity(this.name, this.imagePath, this.venues);
+  const Activity(
+      {required this.name, required this.imagePath, required this.venues});
   final String name;
   final String imagePath;
-  final String venues;
+  final int venues;
 
   factory Activity.fromJson(Map<String, dynamic> json) =>
       _$ActivityFromJson(json);

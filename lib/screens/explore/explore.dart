@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rola_app/data/dummy_data.dart';
 import 'package:rola_app/styles/colors.dart';
 import 'package:rola_app/styles/images.dart';
 import 'package:rola_app/widget/gradient_button.dart';
@@ -18,6 +19,8 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   double _imageSizeHeight = 0.0;
+  final _exploreList = List.from(activities);
+  final _popularList = List.from(popularActivities);
   Image image = Image.asset(PngAssets.snowboarding);
 
   @override
@@ -68,11 +71,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
             title: SizedBox(
               height: 40,
               child: SearchBar(
+                textStyle: MaterialStatePropertyAll(
+                  Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: ColorSystem.black),
+                ),
+                trailing: [SvgPicture.asset(SvgAssets.searchAlt)],
                 hintText: 'what are you looking for?',
                 hintStyle: MaterialStatePropertyAll(Theme.of(context)
                     .textTheme
                     .bodyMedium!
-                    .copyWith(color: ColorSystem.black)),
+                    .copyWith(color: ColorSystem.black40)),
                 backgroundColor: MaterialStateProperty.all(Colors.white),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
@@ -142,46 +152,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
               Container(
                 padding: const EdgeInsets.only(left: 16),
                 height: 310,
-                child: ListView(
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    ExperienceCategory(
-                      imagePath: PngAssets.manWithGlassesVirtual,
-                      name: 'VR',
-                      venues: 34,
-                    ),
-                    ExperienceCategory(
-                      imagePath: PngAssets.manWithGlassesVirtual,
-                      name: 'VR',
-                      venues: 34,
-                    ),
-                    ExperienceCategory(
-                      imagePath: PngAssets.manWithGlassesVirtual,
-                      name: 'VR',
-                      venues: 34,
-                    ),
-                    ExperienceCategory(
-                      imagePath: PngAssets.manWithGlassesVirtual,
-                      name: 'VR',
-                      venues: 34,
-                    ),
-                  ],
+                  itemCount: _exploreList.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      ExperienceCategory(activity: _exploreList[index]),
                 ),
               ),
               sectionTitle('Popular near you'),
-              Row(
-                children: [
-                  PopularCard(
-                    imagePath: PngAssets.skate,
-                    isFavorite: true,
-                    name: 'Skate Stuff',
-                  ),
-                  PopularCard(
-                    imagePath: PngAssets.skate,
-                    isFavorite: true,
-                    name: 'Skate Stuff',
-                  ),
-                ],
+              Wrap(
+                alignment: WrapAlignment.center,
+                direction: Axis.horizontal,
+                spacing: 48, // gap between adjacent chips
+                runSpacing: 24,
+                children: _popularList
+                    .map((popular) =>
+                        SizedBox(width: 159, child: PopularCard(info: popular)))
+                    .toList(),
               ),
               Container(
                 height: 600,
@@ -248,7 +235,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ],
                 ),
               ),
-              sectionTitle('Curated Experiences'),
+              const SizedBox(
+                height: 50,
+              )
             ],
           ),
         ],

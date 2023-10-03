@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rola_app/models/activity.dart';
 import 'package:rola_app/styles/colors.dart';
 
 class ExperienceCategory extends StatelessWidget {
-  const ExperienceCategory(
-      {super.key,
-      required this.imagePath,
-      required this.name,
-      required this.venues});
+  const ExperienceCategory({super.key, required this.activity});
 
-  final String imagePath;
-  final String name;
-  final int venues;
+  final Activity activity;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +20,7 @@ class ExperienceCategory extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
-                imagePath,
+                activity.imagePath,
                 fit: BoxFit.cover,
               ),
             ),
@@ -34,13 +29,13 @@ class ExperienceCategory extends StatelessWidget {
             height: 8,
           ),
           Text(
-            name,
+            activity.name,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
                 .copyWith(color: Colors.grey, fontWeight: FontWeight.w900),
           ),
-          Text("$venues Venues",
+          Text("${activity.venues} Venues",
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Colors.grey,
                   )),
