@@ -31,4 +31,5 @@ class PngAssets {
   static String streetBasket = "$mainAssetsFolder/streetBasket.png";
   static String yoga = "$mainAssetsFolder/yoga.png";
   static String vrRealm = "$mainAssetsFolder/vrRealm.png";
+  static String largeBanner = "$mainAssetsFolder/largeBanner.png";
 }

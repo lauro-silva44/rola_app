@@ -12,7 +12,6 @@ class BookInSecondsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageController = PageController();
     return Scaffold(
       appBar: AppBar(
         title: SvgPicture.asset(SvgAssets.rolaLogo),

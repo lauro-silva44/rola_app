@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rola_app/models/activity.dart';
-import 'package:rola_app/styles/colors.dart';
 
 class ExperienceCategory extends StatelessWidget {
   const ExperienceCategory({super.key, required this.activity});
