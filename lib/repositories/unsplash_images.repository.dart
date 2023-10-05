@@ -7,17 +7,17 @@ class UnsplashImageRepository {
   UnsplashImageRepository();
   final _services = UnsplashServices();
 
-  Future getImages() async {
+  Future<List?> getImages() async {
     try {
-      final result = await _services.api
-          .get("/search/photos?page=1&query=virtual-reality");
-
-      log(result.toString());
+      final response = await _services.api
+          .get("/search/photos?page=1&query=virtual-reality&count=10");
+      return response.data['results'];
     } on DioException {
       log('Error');
     } catch (e) {
       log('catch this $e');
       rethrow;
     }
+    return null;
   }
 }
