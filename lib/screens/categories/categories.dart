@@ -1,16 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:rola_app/data/categories_data.dart';
-import 'package:rola_app/models/category.dart';
 import 'package:rola_app/styles/colors.dart';
 import 'package:rola_app/styles/images.dart';
 import 'package:rola_app/widget/bottom_navigation_bar.dart';
 import 'package:rola_app/widget/category_card.dart';
 import 'package:rola_app/widget/gradient_button.dart';
-
-import '../../repositories/unsplash_images.repository.dart';
-import '../../widget/sub_category_card.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -20,27 +14,6 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  List<Category> imageList = [];
-  @override
-  initState() {
-    printIt();
-    super.initState();
-  }
-
-  Future<void> printIt() async {
-    final imageRepository = await UnsplashImageRepository().getImages();
-    setState(() {
-      imageList = imageRepository!
-          .map((image) => Category(
-                imageSrc: image['urls']['small'],
-                description: image['alt_description'],
-                tag: image['tags'].first['title'],
-              ))
-          .toList();
-    });
-    log(imageRepository.toString());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,9 +116,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ...categories
                     .map((category) => CategoryCard(category: category))
                     .toList(),
-                ...imageList
-                    .map((image) => SubCategoryCard(category: image))
-                    .toList()
               ],
             ),
           ),

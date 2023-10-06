@@ -4,8 +4,10 @@ import 'package:rola_app/models/popular.dart';
 import '../styles/colors.dart';
 
 class PopularCard extends StatelessWidget {
-  const PopularCard({super.key, required this.info});
+  const PopularCard(
+      {super.key, required this.info, this.isNetWorkingImage = false});
   final Popular info;
+  final bool isNetWorkingImage;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +21,15 @@ class PopularCard extends StatelessWidget {
               height: 152,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Image.asset(
-                  info.imagePath,
-                  fit: BoxFit.cover,
-                ),
+                child: isNetWorkingImage
+                    ? Image.network(
+                        info.imagePath,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        info.imagePath,
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
             Positioned(
@@ -44,12 +51,16 @@ class PopularCard extends StatelessWidget {
         const SizedBox(
           height: 4,
         ),
-        Text(
-          info.name,
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                fontWeight: FontWeight.w700,
-                color: Colors.grey,
-              ),
+        SizedBox(
+          width: 159,
+          child: Text(
+            info.name,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: Colors.grey,
+                ),
+          ),
         ),
         const SizedBox(
           height: 4,

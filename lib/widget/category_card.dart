@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rola_app/models/activity.dart';
 
+import '../screens/categories/sub_category.dart';
+
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key, required this.category});
   final Activity category;
@@ -48,7 +50,15 @@ class CategoryCard extends StatelessWidget {
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => SubCategoryScreen(
+                    title: category.name,
+                  ),
+                ),
+              );
+            },
             icon: const Icon(
               Icons.arrow_forward_ios,
               size: 24,

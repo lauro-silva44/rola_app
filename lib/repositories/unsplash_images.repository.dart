@@ -7,10 +7,14 @@ class UnsplashImageRepository {
   UnsplashImageRepository();
   final _services = UnsplashServices();
 
-  Future<List?> getImages() async {
+  Future<List?> getImages({String searchKeyWord = ""}) async {
+    var wordWithoutSpace = searchKeyWord.replaceAll(' ', '-');
+    if (searchKeyWord == "VR" || searchKeyWord == "vr") {
+      wordWithoutSpace = 'virtual-reality';
+    }
     try {
       final response = await _services.api
-          .get("/search/photos?page=1&query=virtual-reality&count=10");
+          .get("/search/photos?page=1&query=$wordWithoutSpace&count=10");
       return response.data['results'];
     } on DioException {
       log('Error');

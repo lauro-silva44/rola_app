@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rola_app/models/category.dart';
-import 'package:rola_app/styles/colors.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class SubCategoryCard extends StatelessWidget {
   const SubCategoryCard({super.key, required this.category});
@@ -20,8 +20,9 @@ class SubCategoryCard extends StatelessWidget {
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      category.imageSrc,
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: category.imageSrc,
                       width: double.infinity,
                       fit: BoxFit.cover,
                       height: double.infinity,

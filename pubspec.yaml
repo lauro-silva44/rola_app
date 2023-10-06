@@ -43,6 +43,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   json_annotation: ^4.8.1
   dio: ^5.3.3
+  transparent_image: ^2.0.1
 
 dev_dependencies:
   flutter_test:

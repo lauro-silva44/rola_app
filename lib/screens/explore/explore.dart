@@ -162,7 +162,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               sectionTitle('Popular near you'),
               Wrap(
                 alignment: WrapAlignment.center,
-                direction: Axis.horizontal,
+
                 spacing: 48, // gap between adjacent chips
                 runSpacing: 24,
                 children: _popularList
