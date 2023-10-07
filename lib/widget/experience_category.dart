@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:rola_app/models/activity.dart';
 
@@ -20,9 +22,12 @@ class ExperienceCategory extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: GestureDetector(
-        onTap: () {
-          onTap!(activity.name);
-        },
+        onTap: onTap == null
+            ? () {}
+            : () {
+                log('clicked');
+                onTap!(activity.name);
+              },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

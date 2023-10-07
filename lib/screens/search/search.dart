@@ -9,6 +9,7 @@ import '../../repositories/unsplash_images.repository.dart';
 import '../../styles/colors.dart';
 import '../../styles/images.dart';
 import '../../widget/experience_category.dart';
+import '../categories/sub_category.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -19,6 +20,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   List<Popular> _imageList = [];
+  final _exploreList = List.from(activities);
+  final TextEditingController _searchFieldController = TextEditingController();
 
   @override
   initState() {
@@ -27,9 +30,9 @@ class _SearchScreenState extends State<SearchScreen> {
     populateList();
   }
 
-  Future<void> populateList() async {
+  Future<void> populateList({String searchKey = 'yoga'}) async {
     final imageRepository =
-        await UnsplashImageRepository().getImages(searchKeyWord: 'yoga');
+        await UnsplashImageRepository().getImages(searchKeyWord: searchKey);
     setState(() {
       _imageList = imageRepository!
           .map(
@@ -46,7 +49,6 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
-  final _exploreList = List.from(activities);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +69,8 @@ class _SearchScreenState extends State<SearchScreen> {
         title: SizedBox(
           height: 40,
           child: SearchBar(
+            controller: _searchFieldController,
+            onChanged: (value) => populateList(searchKey: value),
             textStyle: MaterialStatePropertyAll(
               Theme.of(context).textTheme.bodyMedium!,
             ),
@@ -118,16 +122,23 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: _exploreList.length,
                   itemBuilder: (BuildContext context, int index) =>
                       ExperienceCategory(
-                          imageHeight: 118,
-                          imageWidth: 150,
-                          showVenues: false,
-                          activity: _exploreList[index]),
+                    imageHeight: 118,
+                    imageWidth: 150,
+                    showVenues: false,
+                    activity: _exploreList[index],
+                    onTap: (title) =>
+                        Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => SubCategoryScreen(
+                        title: title,
+                      ),
+                    )),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
-                  '${_imageList.length} Venues Related to ‘Yoga’',
+                  '${_imageList.length} Venues Related to ‘${_searchFieldController.text}’',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.grey, fontWeight: FontWeight.bold),
                 ),
@@ -137,7 +148,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 width: double.infinity,
                 child: Wrap(
                   alignment: WrapAlignment.spaceEvenly,
-                  spacing: 20, // gap between adjacent chips
+                  spacing: 20,
+                  runSpacing: 10, // gap between adjacent chips
                   children: _imageList
                       .map((e) => SizedBox(
                             width: 159,

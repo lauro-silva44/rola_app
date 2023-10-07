@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../screens/categories/categories.dart';
+import '../screens/details/details.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -38,7 +39,7 @@ class RolaApp extends StatelessWidget {
         colorScheme: kColorScheme,
         useMaterial3: true,
       ),
-      home: const CategoriesScreen(),
+      home: const DetailsScreen(),
     );
   }
 }

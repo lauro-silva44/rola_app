@@ -9,6 +9,7 @@ import 'package:rola_app/widget/gradient_button.dart';
 
 import '../../widget/experience_category.dart';
 import '../../widget/popular_card.dart';
+import '../categories/sub_category.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -31,9 +32,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       ImageStreamListener(
         (ImageInfo info, bool _) {
           setState(() {
-            // Update the dimensions once the image is loaded.
             _imageSizeHeight = info.image.height.toDouble();
-            log(_imageSizeHeight);
           });
         },
       ),
@@ -156,7 +155,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   scrollDirection: Axis.horizontal,
                   itemCount: _exploreList.length,
                   itemBuilder: (BuildContext context, int index) =>
-                      ExperienceCategory(activity: _exploreList[index]),
+                      ExperienceCategory(
+                    activity: _exploreList[index],
+                  ),
                 ),
               ),
               sectionTitle('Popular near you'),
@@ -166,8 +167,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 spacing: 48, // gap between adjacent chips
                 runSpacing: 24,
                 children: _popularList
-                    .map((popular) =>
-                        SizedBox(width: 159, child: PopularCard(info: popular)))
+                    .map(
+                      (popular) => SizedBox(
+                        width: 159,
+                        child: PopularCard(info: popular),
+                      ),
+                    )
                     .toList(),
               ),
               Container(
