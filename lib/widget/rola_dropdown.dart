@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import '../styles/colors.dart';
 
 class RolaDropdown extends StatelessWidget {
-  const RolaDropdown({super.key, required this.items, required this.hint});
+  const RolaDropdown(
+      {super.key,
+      required this.items,
+      required this.hint,
+      this.addBorder = false});
   final List<String> items;
   final String hint;
+  final bool addBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +23,15 @@ class RolaDropdown extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hint,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: addBorder
+              ? BorderSide(color: ColorSystem.black40)
+              : BorderSide.none,
           borderRadius: BorderRadius.circular(4),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide.none,
+          borderSide: addBorder
+              ? BorderSide(color: ColorSystem.black40)
+              : BorderSide.none,
           borderRadius: BorderRadius.circular(4),
         ),
         filled: true,
