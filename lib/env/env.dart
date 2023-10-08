@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../firebase_options.dart';
 import '../screens/categories/categories.dart';
 import '../screens/details/details.dart';
+import '../screens/login/login.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -21,6 +24,9 @@ class Env {
 
   void main() async {
     await dotenv.load(fileName: '.env');
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     runApp(const RolaApp());
   }
 }
@@ -39,7 +45,7 @@ class RolaApp extends StatelessWidget {
         colorScheme: kColorScheme,
         useMaterial3: true,
       ),
-      home: const DetailsScreen(),
+      home: const LoginScreen(),
     );
   }
 }

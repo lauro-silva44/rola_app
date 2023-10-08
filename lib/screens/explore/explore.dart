@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rola_app/data/dummy_data.dart';
@@ -9,7 +7,6 @@ import 'package:rola_app/widget/gradient_button.dart';
 
 import '../../widget/experience_category.dart';
 import '../../widget/popular_card.dart';
-import '../categories/sub_category.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});

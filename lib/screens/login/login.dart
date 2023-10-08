@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../services/authentication.dart';
 import '../../styles/images.dart';
 import '../../widget/gradient_button.dart';
 import '../../widget/input_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,29 +45,39 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 21,
                   ),
-                  const InputField(
-                    labelText: 'What are you looking for?',
+                  InputField(
+                    labelText: 'Email address or Mobile Number',
+                    controller: _email,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                  const InputField(
+                  InputField(
                     obscureText: true,
                     labelText: 'Password',
+                    controller: _password,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
-                  const RolaGradientButton(
+                  RolaGradientButton(
                     label: 'Login',
+                    onTap: () async =>
+                        await _authService.signInWithEmailAndPassword(
+                      emailAddress: _email.text.trim(),
+                      password: _password.text.trim(),
+                    ),
                   ),
                   const SizedBox(
                     height: 24,
                   ),
-                  Text(
-                    'Forgot password?',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Forgot password?',
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Theme.of(context).colorScheme.onBackground),
+                    ),
                   ),
                   const SizedBox(
                     height: 17,
@@ -101,6 +120,7 @@ class LoginScreen extends StatelessWidget {
                     icon: SvgPicture.asset(SvgAssets.googleLogo),
                     isOutlined: true,
                     label: 'Continue with Google',
+                    onTap: () => _authService.signInWithGoogle(),
                   ),
                   const SizedBox(
                     height: 22,
@@ -109,6 +129,7 @@ class LoginScreen extends StatelessWidget {
                     icon: SvgPicture.asset(SvgAssets.faceLogo),
                     isOutlined: true,
                     label: 'Continue with Facebook',
+                    onTap: () {},
                   ),
                   const SizedBox(
                     height: 30,

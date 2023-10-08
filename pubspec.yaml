@@ -46,6 +46,7 @@ dependencies:
   transparent_image: ^2.0.1
   table_calendar: ^3.0.9
   dropdown_button2: ^2.3.9
+  flutter_facebook_auth: ^6.0.2
 
 dev_dependencies:
   flutter_test:

@@ -29,6 +29,13 @@
             {
               "client_id": "246064396415-cfc1bba85jhhk61gb7mm9k4vvh39th9j.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "246064396415-4kmvs7bqshih5bc0qdrsqedl75v01a13.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rola.silva.lauro.rolaApp"
+              }
             }
           ]
         }

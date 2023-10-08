@@ -9,16 +9,18 @@ class InputField extends StatelessWidget {
       this.obscureText,
       this.changeContrast = false,
       this.inputFormatters,
-      this.keyboardType});
+      this.keyboardType,
+      this.controller});
   final String labelText;
   final bool? obscureText;
   final bool changeContrast;
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
-
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       style: Theme.of(context).textTheme.bodyMedium!.copyWith(

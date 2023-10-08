@@ -9,12 +9,14 @@ class RolaGradientButton extends StatelessWidget {
       required this.label,
       this.isOutlined = false,
       this.changeToWhite = false,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.onTap});
   final Widget? icon;
   final Widget? suffixIcon;
   final String label;
   final bool isOutlined;
   final bool changeToWhite;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class RolaGradientButton extends StatelessWidget {
     );
     if (isOutlined) {
       return OutlineGradientButton(
+          onTap: onTap,
           inkWell: true,
           padding: EdgeInsets.zero,
           gradient: const LinearGradient(
@@ -60,7 +63,7 @@ class RolaGradientButton extends StatelessWidget {
     return ElevatedButton(
       clipBehavior: Clip.hardEdge,
       style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
-      onPressed: () {},
+      onPressed: onTap,
       child: Container(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           decoration: BoxDecoration(
