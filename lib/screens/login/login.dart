@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../services/authentication.dart';
+import '../../services/firebase_firestore.dart';
 import '../../styles/images.dart';
 import '../../widget/gradient_button.dart';
 import '../../widget/input_field.dart';
@@ -17,6 +18,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final AuthService _authService = AuthService();
+  final FireStoreService _fireStoreService = FireStoreService();
+
+  @override
+  void initState() {
+    super.initState();
+    _fireStoreService.book();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
