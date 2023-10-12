@@ -1,11 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rola_app/config/routes/routes.dart';
+import 'package:rola_app/config/routes/routes_location.dart';
+import 'package:rola_app/screens/login/login_second.dart';
 
 import '../firebase_options.dart';
 import '../screens/categories/categories.dart';
 import '../screens/details/details.dart';
 import '../screens/login/login.dart';
+import '../screens/home/home.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -36,7 +41,7 @@ class RolaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Manrope',
@@ -45,7 +50,8 @@ class RolaApp extends StatelessWidget {
         colorScheme: kColorScheme,
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      routerConfig:
+          GoRouter(initialLocation: RoutesLocation.login, routes: routes),
     );
   }
 }

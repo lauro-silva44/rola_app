@@ -48,6 +48,9 @@ dependencies:
   dropdown_button2: ^2.3.9
   flutter_facebook_auth: ^6.0.2
   cloud_firestore: ^4.9.3
+  go_router: ^11.1.3
+  form_field_validator: ^1.1.0
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:

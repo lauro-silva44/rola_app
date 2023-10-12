@@ -206,7 +206,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "sdasfadsfasdf",
                         ),
                         const SizedBox(

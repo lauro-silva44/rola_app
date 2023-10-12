@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _fireStoreService.book();
+    // _fireStoreService.book();
   }
 
   @override
@@ -180,27 +180,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 36,
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Don’t have an account? Sign up',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                  fontWeight: FontWeight.w800,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground),
-                        ),
-                        const SizedBox.square(
-                            dimension: 16,
-                            child: Icon(Icons.arrow_forward_ios)),
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Don’t have an account? Sign up',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(
+                                    fontWeight: FontWeight.w800,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                          ),
+                          const SizedBox.square(
+                              dimension: 16,
+                              child: Icon(Icons.arrow_forward_ios)),
+                        ],
+                      ),
                     ),
                   )
                 ],

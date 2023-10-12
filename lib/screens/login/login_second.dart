@@ -5,10 +5,19 @@ import 'package:rola_app/widget/gradient_button.dart';
 import 'package:rola_app/widget/input_field.dart';
 
 import '../../constants/measures.dart';
+import '../../services/firebase_firestore.dart';
 
-class LoginSecondScreen extends StatelessWidget {
+class LoginSecondScreen extends StatefulWidget {
   const LoginSecondScreen({super.key});
 
+  @override
+  State<LoginSecondScreen> createState() => _LoginSecondScreenState();
+}
+
+class _LoginSecondScreenState extends State<LoginSecondScreen> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final FireStoreService _fireStoreService = FireStoreService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,18 +65,30 @@ class LoginSecondScreen extends StatelessWidget {
                   horizontal: defaultHorizontalPadding),
               child: Column(
                 children: [
-                  const InputField(labelText: 'Email address or Mobile Number'),
+                  InputField(
+                    labelText: 'Email address or Mobile Number',
+                    controller: _email,
+                  ),
                   const SizedBox(
                     height: 8,
                   ),
-                  const InputField(
+                  InputField(
+                    controller: _password,
                     labelText: 'Password',
                     obscureText: true,
                   ),
                   const SizedBox(
                     height: 18,
                   ),
-                  const RolaGradientButton(label: 'Login'),
+                  RolaGradientButton(
+                    label: 'Login',
+                    onTap: () async {
+                      _fireStoreService.login(
+                        email: _email.text.trim(),
+                        password: _password.text.trim(),
+                      );
+                    },
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
