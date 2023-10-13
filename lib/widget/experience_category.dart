@@ -25,7 +25,6 @@ class ExperienceCategory extends StatelessWidget {
         onTap: onTap == null
             ? () {}
             : () {
-                log('clicked');
                 onTap!(activity.name);
               },
         child: Column(

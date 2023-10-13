@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rola_app/config/routes/routes_location.dart';
 import 'package:rola_app/styles/images.dart';
 import 'package:rola_app/widget/gradient_button.dart';
 import 'package:rola_app/widget/input_field.dart';
@@ -83,10 +87,17 @@ class _LoginSecondScreenState extends State<LoginSecondScreen> {
                   RolaGradientButton(
                     label: 'Login',
                     onTap: () async {
-                      _fireStoreService.login(
+                      final user = await _fireStoreService.login(
                         email: _email.text.trim(),
                         password: _password.text.trim(),
                       );
+
+                      if (user != null && mounted) {
+                        context.push(RoutesLocation.onBoarding);
+                      } else {
+                        log(user.toString());
+                        return;
+                      }
                     },
                   ),
                   const SizedBox(

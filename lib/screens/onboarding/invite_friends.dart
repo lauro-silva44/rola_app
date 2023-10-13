@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rola_app/constants/measures.dart';
 import 'package:rola_app/styles/images.dart';
 import 'package:rola_app/widget/gradient_button.dart';
@@ -22,7 +23,7 @@ class InviteFriendsScreen extends StatelessWidget {
             margin: const EdgeInsets.only(right: defaultHorizontalPadding),
             child: IconButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                context.pop();
               },
               icon: const Icon(Icons.clear),
             ),
