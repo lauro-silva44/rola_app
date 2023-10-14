@@ -3,12 +3,16 @@ import 'package:rola_app/widget/gradient_button.dart';
 import 'package:rola_app/widget/rola_dropdown.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../models/popular.dart';
 import '../../styles/colors.dart';
 import '../../styles/images.dart';
 
 class DetailsScreen extends StatefulWidget {
-  const DetailsScreen({super.key, required this.imageUrl});
-  final String imageUrl;
+  const DetailsScreen({
+    super.key,
+    required this.info,
+  });
+  final Popular info;
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
@@ -43,9 +47,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(
             background: Hero(
-              tag: widget.imageUrl,
+              tag: widget.info.imagePath,
               child: Image.network(
-                widget.imageUrl,
+                widget.info.imagePath,
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
@@ -90,8 +94,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          ('Vr'),
+                        Container(
+                          height: 80,
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Text(
+                            widget.info.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                    fontSize: 36, fontWeight: FontWeight.bold),
+                          ),
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(vertical: 16),

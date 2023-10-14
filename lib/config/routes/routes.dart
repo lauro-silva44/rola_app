@@ -7,6 +7,7 @@ import 'package:rola_app/screens/onboarding/on_boarding_first.dart';
 import 'package:rola_app/screens/search/search.dart';
 import 'package:rola_app/screens/signup/signup.dart';
 
+import '../../models/popular.dart';
 import '../../screens/categories/sub_category.dart';
 import '../../screens/explore/explore.dart';
 import '../../screens/home/home.dart';
@@ -49,6 +50,8 @@ final routes = [
   ),
   GoRoute(
     path: RoutesLocation.details,
-    builder: (ctx, state) => DetailsScreen(imageUrl: state.extra as String),
+    builder: (ctx, state) => DetailsScreen(
+      info: state.extra as Popular,
+    ),
   ),
 ];

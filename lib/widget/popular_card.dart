@@ -14,7 +14,7 @@ class PopularCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push(RoutesLocation.details, extra: info.imagePath),
+      onTap: () => context.push(RoutesLocation.details, extra: info),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
