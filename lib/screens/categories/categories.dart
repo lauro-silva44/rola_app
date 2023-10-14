@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rola_app/config/routes/routes_location.dart';
 import 'package:rola_app/data/categories_data.dart';
 import 'package:rola_app/styles/colors.dart';
 import 'package:rola_app/styles/images.dart';
@@ -25,7 +27,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           icon: const Icon(
             Icons.arrow_back,
           ),
-          onPressed: () {},
+          onPressed: () {
+            context.pop();
+          },
         ),
         centerTitle: true,
         title: Text(
@@ -86,11 +90,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           const SizedBox(
                             height: 20,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 170,
                             child: RolaGradientButton(
                               label: 'Explore',
                               changeToWhite: true,
+                              onTap: () => context.push(RoutesLocation.search),
                             ),
                           ),
                           const SizedBox(

@@ -37,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
       _imageList = imageRepository!
           .map(
             (image) => Popular(
-                name: image['description'] ?? '',
+                name: image['description'] ?? searchKey,
                 imagePath: image['urls']['small'],
                 entryPrice: 1.5,
                 sport: image['tags'][0]['title'] ?? '',
@@ -71,6 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: SearchBar(
             controller: _searchFieldController,
             onChanged: (value) => populateList(searchKey: value),
+            elevation: const MaterialStatePropertyAll(0),
             textStyle: MaterialStatePropertyAll(
               Theme.of(context).textTheme.bodyMedium!,
             ),
@@ -138,7 +139,7 @@ class _SearchScreenState extends State<SearchScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
-                  '${_imageList.length} Venues Related to ‘${_searchFieldController.text}’',
+                  '${_imageList.length} Venues Related to ‘${_searchFieldController.text.isEmpty ? 'yoga' : _searchFieldController.text}’',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.grey, fontWeight: FontWeight.bold),
                 ),

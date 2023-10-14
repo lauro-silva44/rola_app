@@ -7,7 +7,8 @@ import '../../styles/colors.dart';
 import '../../styles/images.dart';
 
 class DetailsScreen extends StatefulWidget {
-  const DetailsScreen({super.key});
+  const DetailsScreen({super.key, required this.imageUrl});
+  final String imageUrl;
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
@@ -41,11 +42,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-              PngAssets.snowboarding,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
+            background: Hero(
+              tag: widget.imageUrl,
+              child: Image.network(
+                widget.imageUrl,
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           expandedHeight: 300,

@@ -10,4 +10,7 @@ class RoutesLocation {
   static String get onBoarding => '/on_boarding';
   static String get explore => '/explore';
   static String get subCategory => '/sub_category';
+  static String get category => '/category';
+  static String get search => '/search';
+  static String get details => '/details';
 }

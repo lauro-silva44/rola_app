@@ -1,7 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
+import 'package:rola_app/screens/categories/categories.dart';
+import 'package:rola_app/screens/details/details.dart';
 import 'package:rola_app/screens/login/login_second.dart';
 import 'package:rola_app/screens/onboarding/on_boarding_first.dart';
+import 'package:rola_app/screens/search/search.dart';
 import 'package:rola_app/screens/signup/signup.dart';
 
 import '../../screens/categories/sub_category.dart';
@@ -35,5 +38,17 @@ final routes = [
     builder: (ctx, state) => SubCategoryScreen(
       title: state.extra as String,
     ),
+  ),
+  GoRoute(
+    path: RoutesLocation.category,
+    builder: (ctx, state) => const CategoriesScreen(),
+  ),
+  GoRoute(
+    path: RoutesLocation.search,
+    builder: (ctx, state) => const SearchScreen(),
+  ),
+  GoRoute(
+    path: RoutesLocation.details,
+    builder: (ctx, state) => DetailsScreen(imageUrl: state.extra as String),
   ),
 ];
