@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rola_app/models/popular.dart';
 import 'package:rola_app/widget/bottom_navigation_bar.dart';
 import 'package:rola_app/widget/sub_category_card.dart';
 
-import '../../models/category.dart';
 import '../../repositories/unsplash_images.repository.dart';
 import '../../styles/colors.dart';
 
@@ -15,7 +15,7 @@ class SubCategoryScreen extends StatefulWidget {
 }
 
 class _SubCategoryState extends State<SubCategoryScreen> {
-  List<Category> _imageList = [];
+  List<Popular> _imageList = [];
   final List<String> _chipList = [
     'Featured',
     'Recently Added',
@@ -34,10 +34,14 @@ class _SubCategoryState extends State<SubCategoryScreen> {
         await UnsplashImageRepository().getImages(searchKeyWord: widget.title);
     setState(() {
       _imageList = imageRepository!
-          .map((image) => Category(
-                imageSrc: image['urls']['small'],
-                description: image['alt_description'] ?? 'No description',
-                tag: image['tags'].first['title'],
+          .map((image) => Popular(
+                imagePath: image['urls']['small'],
+                name: image['alt_description'] ?? 'No description',
+                sport: image['tags'].first['title'],
+                entryPrice: 1.5,
+                isFavorite: false,
+                distance: 1.5,
+                rate: 4.5,
               ))
           .toList();
     });
@@ -113,7 +117,7 @@ class _SubCategoryState extends State<SubCategoryScreen> {
               ),
               ..._imageList
                   .map(
-                    (category) => SubCategoryCard(category: category),
+                    (category) => SubCategoryCard(info: category),
                   )
                   .toList()
             ],

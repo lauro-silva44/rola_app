@@ -7,10 +7,12 @@ class RolaDropdown extends StatelessWidget {
       {super.key,
       required this.items,
       required this.hint,
-      this.addBorder = false});
+      this.addBorder = false,
+      this.onChanged});
   final List<String> items;
   final String hint;
   final bool addBorder;
+  final void Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class RolaDropdown extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
       ),
-      onChanged: (value) {},
+      onChanged: onChanged,
       items: items
           .map<DropdownMenuItem<String>>(
             (e) => DropdownMenuItem<String>(
