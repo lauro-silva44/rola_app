@@ -22,7 +22,6 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  double _imageSizeHeight = 0.0;
   final List<Activity> _exploreList = List.from(activities);
   List<Popular> _popularList = [];
   Image image = Image.asset(PngAssets.snowboarding);
@@ -30,17 +29,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   void initState() {
     super.initState();
-
-    image.image.resolve(const ImageConfiguration()).addListener(
-      ImageStreamListener(
-        (ImageInfo info, bool _) {
-          setState(() {
-            _imageSizeHeight = info.image.height.toDouble();
-          });
-        },
-      ),
-    );
-
     populateList();
   }
 
@@ -128,7 +116,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               )
             ],
             pinned: true,
-            expandedHeight: _imageSizeHeight,
+            expandedHeight: 510,
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(
                 fit: StackFit.expand,
@@ -212,7 +200,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ),
               Container(
                 height: 600,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
@@ -277,9 +266,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 50,
-              )
             ],
           ),
         ],

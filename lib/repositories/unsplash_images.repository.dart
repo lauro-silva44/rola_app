@@ -7,14 +7,14 @@ class UnsplashImageRepository {
   UnsplashImageRepository();
   final _services = UnsplashServices();
 
-  Future<List?> getImages({String searchKeyWord = ""}) async {
+  Future<List?> getImages({String searchKeyWord = "", int perPage = 10}) async {
     var wordWithoutSpace = searchKeyWord.replaceAll(' ', '-');
     if (searchKeyWord == "VR" || searchKeyWord == "vr") {
       wordWithoutSpace = 'virtual-reality';
     }
     try {
-      final response = await _services.api
-          .get("/search/photos?page=1&query=$wordWithoutSpace&count=10");
+      final response = await _services.api.get(
+          "/search/photos?page=1&query=$wordWithoutSpace&per_page=$perPage");
       return response.data['results'];
     } on DioException {
       log('Error');

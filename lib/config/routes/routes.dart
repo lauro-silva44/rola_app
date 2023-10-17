@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
+import 'package:rola_app/screens/bookings/bookings.dart';
 import 'package:rola_app/screens/categories/categories.dart';
 import 'package:rola_app/screens/details/details.dart';
 import 'package:rola_app/screens/login/login_second.dart';
@@ -53,5 +54,9 @@ final routes = [
     builder: (ctx, state) => DetailsScreen(
       info: state.extra as Popular,
     ),
+  ),
+  GoRoute(
+    path: RoutesLocation.bookings,
+    builder: (ctx, state) => const BookingsScreen(),
   ),
 ];

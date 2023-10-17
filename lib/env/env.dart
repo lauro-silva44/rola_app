@@ -1,16 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
-import 'package:rola_app/screens/login/login_second.dart';
 
 import '../firebase_options.dart';
-import '../screens/categories/categories.dart';
-import '../screens/details/details.dart';
-import '../screens/login/login.dart';
-import '../screens/home/home.dart';
 
 final kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -32,7 +28,7 @@ class Env {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    runApp(const RolaApp());
+    runApp(const ProviderScope(child: RolaApp()));
   }
 }
 

@@ -14,7 +14,13 @@ class _State extends State<BookingsScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: [Image.asset(PngAssets.noBookingBanner)],
+          children: [
+            Image.asset(
+              PngAssets.noBookingBanner,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            )
+          ],
         ),
       ),
     );

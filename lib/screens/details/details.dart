@@ -22,13 +22,13 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  final List<String> _timeChips = [
-    '03:00 PM',
-    '04:00 PM',
-    '06:00 PM',
-    '07:00 PM',
-    '09:00 PM',
-    '10:00 PM',
+  var _timeChips = [
+    ['03:00 PM', false],
+    ['04:00 PM', false],
+    ['06:00 PM', false],
+    ['07:00 PM', false],
+    ['09:00 PM', false],
+    ['10:00 PM', false]
   ];
 
   String _finalPrice = '0';
@@ -244,20 +244,26 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   (e) => Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 4),
-                                    child: Chip(
-                                      backgroundColor: ColorSystem.black40,
-                                      side: BorderSide.none,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
+                                    child: FilledButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: e[1] as bool
+                                            ? Colors.white
+                                            : ColorSystem.black,
                                       ),
-                                      label: Text(
-                                        e,
+                                      child: Text(
+                                        e[0] as String,
                                         style: TextStyle(
-                                          color: ColorSystem.black,
+                                          color: e[1] as bool
+                                              ? ColorSystem.black
+                                              : Colors.white,
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
+                                      onPressed: () {
+                                        setState(() {
+                                          e[1] = !(e[1] as bool);
+                                        });
+                                      },
                                     ),
                                   ),
                                 )
