@@ -1,6 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'popular.g.dart';
+
+const uuid = Uuid();
 
 @JsonSerializable()
 class Popular {
@@ -11,7 +14,10 @@ class Popular {
       required this.sport,
       required this.isFavorite,
       required this.distance,
-      required this.rate});
+      required this.rate,
+      String? id})
+      : id = id ?? uuid.v4();
+  final String id;
   final String imagePath;
   final String name;
   final double entryPrice;

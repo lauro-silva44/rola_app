@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
 import 'package:rola_app/models/popular.dart';
+import 'package:rola_app/providers/favorites_provider.dart';
 
 import '../styles/colors.dart';
 
-class PopularCard extends StatelessWidget {
+class PopularCard extends ConsumerWidget {
   const PopularCard(
       {super.key, required this.info, this.isNetWorkingImage = false});
   final Popular info;
   final bool isNetWorkingImage;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isFavorite = ref.watch(favoriteProvider).contains(info);
     return InkWell(
       onTap: () => context.push(RoutesLocation.details, extra: info),
       child: Column(
@@ -46,10 +49,12 @@ class PopularCard extends StatelessWidget {
                   dimension: 22,
                   child: IconButton(
                     icon: Icon(
-                      info.isFavorite ? Icons.favorite : Icons.favorite_border,
-                      key: ValueKey(info.isFavorite),
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      key: ValueKey(isFavorite),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(favoriteProvider.notifier).addPopular(info);
+                    },
                   ),
                 ),
               )

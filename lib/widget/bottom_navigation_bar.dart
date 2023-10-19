@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rola_app/screens/search/search.dart';
 import 'package:rola_app/styles/colors.dart';
 
+import '../providers/bottom_navaigation_provider.dart';
 import '../screens/bookings/bookings.dart';
 
-class RolaBottomNavigationBar extends StatefulWidget {
+class RolaBottomNavigationBar extends ConsumerStatefulWidget {
   const RolaBottomNavigationBar({super.key});
 
   @override
-  State<RolaBottomNavigationBar> createState() =>
+  ConsumerState<RolaBottomNavigationBar> createState() =>
       _RolaBottomNavigationBarState();
 }
 
-class _RolaBottomNavigationBarState extends State<RolaBottomNavigationBar> {
-  var _currentIndex = 0;
+class _RolaBottomNavigationBarState
+    extends ConsumerState<RolaBottomNavigationBar> {
   final List<Widget> _screens = [
     const SearchScreen(),
     const BookingsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
+    int currentIndex = ref.watch(bottomNavigatorProvider);
     return BottomNavigationBar(
-      currentIndex: _currentIndex,
+      currentIndex: currentIndex,
       onTap: (index) {
-        _currentIndex = index;
+        ref.read(bottomNavigatorProvider.notifier).changeCurrentIndex(index);
+
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (ctx) => _screens.elementAt(index),

@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rola_app/providers/favorites_provider.dart';
 import 'package:rola_app/widget/gradient_button.dart';
 import 'package:rola_app/widget/rola_dropdown.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -8,7 +10,7 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../models/popular.dart';
 import '../../styles/colors.dart';
 
-class DetailsScreen extends StatefulWidget {
+class DetailsScreen extends ConsumerStatefulWidget {
   const DetailsScreen({
     super.key,
     required this.info,
@@ -18,11 +20,11 @@ class DetailsScreen extends StatefulWidget {
   final void Function()? favoriteButtonOnPressed;
 
   @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
+  ConsumerState<DetailsScreen> createState() => _DetailsScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
-  var _timeChips = [
+class _DetailsScreenState extends ConsumerState<DetailsScreen> {
+  final _timeChips = [
     ['03:00 PM', false],
     ['04:00 PM', false],
     ['06:00 PM', false],
@@ -32,10 +34,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
   ];
 
   String _finalPrice = '0';
-  bool _isFavorite = false;
+
   var _focusedDay = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    bool isFavorite = ref.watch(favoriteProvider).contains(widget.info);
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
@@ -78,14 +81,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
                 child: Icon(
                   Icons.favorite,
-                  color: _isFavorite ? Colors.redAccent : Colors.grey,
-                  key: ValueKey(_isFavorite),
+                  color: isFavorite ? Colors.redAccent : Colors.grey,
+                  key: ValueKey(isFavorite),
                 ),
               ),
               onPressed: () {
-                setState(() {
-                  _isFavorite = !_isFavorite;
-                });
+                ref.read(favoriteProvider.notifier).addPopular(widget.info);
               },
             ),
             const SizedBox(

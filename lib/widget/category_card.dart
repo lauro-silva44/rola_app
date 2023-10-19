@@ -4,8 +4,9 @@ import 'package:rola_app/models/activity.dart';
 import '../screens/categories/sub_category.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({super.key, required this.category});
+  const CategoryCard({super.key, required this.category, this.onPressed});
   final Activity category;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +51,16 @@ class CategoryCard extends StatelessWidget {
             ],
           ),
           IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (ctx) => SubCategoryScreen(
-                    title: category.name,
-                  ),
-                ),
-              );
-            },
+            onPressed: onPressed ??
+                () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (ctx) => SubCategoryScreen(
+                        title: category.name,
+                      ),
+                    ),
+                  );
+                },
             icon: const Icon(
               Icons.arrow_forward_ios,
               size: 24,

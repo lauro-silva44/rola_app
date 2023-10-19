@@ -47,7 +47,7 @@ class RolaApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routerConfig:
-          GoRouter(initialLocation: RoutesLocation.onBoarding, routes: routes),
+          GoRouter(initialLocation: RoutesLocation.bookings, routes: routes),
     );
   }
 }
