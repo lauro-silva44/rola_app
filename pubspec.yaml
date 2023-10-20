@@ -55,6 +55,8 @@ dependencies:
   flutter_riverpod: ^2.4.4
   riverpod_annotation: ^2.2.1
   uuid: ^3.0.7
+  calendar_view: ^1.0.4
+  qr_flutter: ^4.1.0
 
 dev_dependencies:
   flutter_test:
