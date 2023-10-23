@@ -15,9 +15,12 @@ class PopularCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isFavorite = ref.watch(favoriteProvider).contains(info);
+    bool isFavorite = ref
+        .watch(favoriteProvider)
+        .where((element) => element.imagePath == info.imagePath)
+        .isNotEmpty;
     return InkWell(
-      onTap: () => context.push(RoutesLocation.details, extra: info),
+      onTap: () => context.push(AppRoutes.details, extra: info),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

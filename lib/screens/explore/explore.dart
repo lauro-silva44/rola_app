@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
 import 'package:rola_app/data/dummy_data.dart';
+import 'package:rola_app/providers/favorites_provider.dart';
 import 'package:rola_app/styles/colors.dart';
 import 'package:rola_app/styles/images.dart';
 import 'package:rola_app/widget/gradient_button.dart';
@@ -14,14 +18,14 @@ import '../../widget/bottom_navigation_bar.dart';
 import '../../widget/experience_category.dart';
 import '../../widget/popular_card.dart';
 
-class ExploreScreen extends StatefulWidget {
+class ExploreScreen extends ConsumerStatefulWidget {
   const ExploreScreen({super.key});
 
   @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
+  ConsumerState<ExploreScreen> createState() => _ExploreScreenState();
 }
 
-class _ExploreScreenState extends State<ExploreScreen> {
+class _ExploreScreenState extends ConsumerState<ExploreScreen> {
   final List<Activity> _exploreList = List.from(activities);
   List<Popular> _popularList = [];
   Image image = Image.asset(PngAssets.snowboarding);
@@ -36,18 +40,20 @@ class _ExploreScreenState extends State<ExploreScreen> {
     final imageRepository =
         await UnsplashImageRepository().getImages(searchKeyWord: searchKey);
     setState(() {
-      _popularList = imageRepository!
-          .map(
-            (image) => Popular(
-                name: image['description'] ?? searchKey,
-                imagePath: image['urls']['small'],
-                entryPrice: 1.5,
-                sport: image['tags'][0]['title'] ?? '',
-                isFavorite: false,
-                distance: 1.5,
-                rate: 4.8),
-          )
-          .toList();
+      _popularList = imageRepository!.map((image) {
+        bool noAddedYet = ref
+            .watch(favoriteProvider)
+            .where((element) => element.imagePath == image['urls']['small'])
+            .isNotEmpty;
+        return Popular(
+            name: image['description'] ?? searchKey,
+            imagePath: image['urls']['small'],
+            entryPrice: 1.5,
+            sport: image['tags'][0]['title'] ?? '',
+            isFavorite: noAddedYet,
+            distance: 1.5,
+            rate: 4.8);
+      }).toList();
     });
   }
 
@@ -151,8 +157,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             child: RolaGradientButton(
                               label: 'Explore',
                               changeToWhite: true,
-                              onTap: () =>
-                                  context.push(RoutesLocation.category),
+                              onTap: () => context.push(AppRoutes.category),
                             ),
                           ),
                         ],
@@ -176,7 +181,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       ExperienceCategory(
                     activity: _exploreList[index],
                     onTap: (name) =>
-                        context.push(RoutesLocation.subCategory, extra: name),
+                        context.push(AppRoutes.subCategory, extra: name),
                   ),
                 ),
               ),
@@ -255,8 +260,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               child: RolaGradientButton(
                                 label: 'Learn More',
                                 changeToWhite: true,
-                                onTap: () =>
-                                    context.push(RoutesLocation.category),
+                                onTap: () => context.push(AppRoutes.category),
                               ),
                             ),
                           ],

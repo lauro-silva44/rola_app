@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' show immutable;
 
 @immutable
-class RoutesLocation {
-  const RoutesLocation._();
+class AppRoutes {
+  const AppRoutes._();
 
   static String get home => '/';
   static String get login => '/login';

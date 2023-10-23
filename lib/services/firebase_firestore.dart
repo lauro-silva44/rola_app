@@ -38,4 +38,6 @@ class FireStoreService {
     // await _db.collection("users").add(user).then((DocumentReference doc) =>
     //     print('DocumentSnapshot added with ID: ${doc.id}'));
   }
+
+  Future<void> createBooking() async {}
 }

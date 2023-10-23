@@ -11,7 +11,7 @@ class SubCategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push(RoutesLocation.details, extra: info),
+      onTap: () => context.push(AppRoutes.details, extra: info),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Column(

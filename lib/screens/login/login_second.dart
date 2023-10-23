@@ -93,7 +93,7 @@ class _LoginSecondScreenState extends State<LoginSecondScreen> {
                       );
 
                       if (user != null && mounted) {
-                        context.push(RoutesLocation.onBoarding);
+                        context.push(AppRoutes.onBoarding);
                       } else {
                         log(user.toString());
                         return;

@@ -65,7 +65,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             margin: const EdgeInsets.only(right: defaultHorizontalPadding),
             child: IconButton(
               onPressed: () {
-                context.push(RoutesLocation.explore);
+                context.push(AppRoutes.explore);
               },
               icon: const Icon(Icons.clear),
             ),
@@ -89,7 +89,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               padding: const EdgeInsets.only(bottom: 41, top: 32),
               child: RolaGradientButton(
                 label: 'Skip On-boarding',
-                onTap: () => context.push(RoutesLocation.explore),
+                onTap: () => context.push(AppRoutes.explore),
               ),
             )
           ],

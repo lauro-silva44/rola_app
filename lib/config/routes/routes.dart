@@ -16,52 +16,54 @@ import '../../screens/home/home.dart';
 
 final routes = [
   GoRoute(
-    path: RoutesLocation.home,
-    name: RoutesLocation.home,
+    path: AppRoutes.home,
+    name: AppRoutes.home,
     builder: (ctx, state) => const HomeScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.signup,
+    path: AppRoutes.signup,
     builder: (ctx, state) => const SignUpScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.login,
+    path: AppRoutes.login,
     builder: (ctx, state) => const LoginSecondScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.onBoarding,
+    path: AppRoutes.onBoarding,
     builder: (ctx, state) => const OnBoardingScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.explore,
+    path: AppRoutes.explore,
     builder: (ctx, state) => const ExploreScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.subCategory,
+    path: AppRoutes.subCategory,
     builder: (ctx, state) => SubCategoryScreen(
       title: state.extra as String,
     ),
   ),
   GoRoute(
-    path: RoutesLocation.category,
+    path: AppRoutes.category,
     builder: (ctx, state) => const CategoriesScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.search,
+    path: AppRoutes.search,
     builder: (ctx, state) => const SearchScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.details,
+    path: AppRoutes.details,
     builder: (ctx, state) => DetailsScreen(
       info: state.extra as Popular,
     ),
   ),
   GoRoute(
-    path: RoutesLocation.bookings,
+    path: AppRoutes.bookings,
     builder: (ctx, state) => const BookingsScreen(),
   ),
   GoRoute(
-    path: RoutesLocation.bookingDetails,
-    builder: (ctx, state) => const BookingDetailsScreen(),
+    path: AppRoutes.bookingDetails,
+    builder: (ctx, state) => BookingDetailsScreen(
+      info: state.extra as Popular,
+    ),
   ),
 ];

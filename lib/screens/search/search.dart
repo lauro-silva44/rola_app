@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rola_app/models/popular.dart';
 import 'package:rola_app/widget/bottom_navigation_bar.dart';
 import 'package:rola_app/widget/popular_card.dart';
 
 import '../../data/dummy_data.dart';
+import '../../providers/favorites_provider.dart';
 import '../../repositories/unsplash_images.repository.dart';
 import '../../styles/colors.dart';
 import '../../styles/images.dart';
 import '../../widget/experience_category.dart';
 import '../categories/sub_category.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   List<Popular> _imageList = [];
   final _exploreList = List.from(activities);
   final TextEditingController _searchFieldController = TextEditingController();
@@ -34,18 +36,21 @@ class _SearchScreenState extends State<SearchScreen> {
     final imageRepository =
         await UnsplashImageRepository().getImages(searchKeyWord: searchKey);
     setState(() {
-      _imageList = imageRepository!
-          .map(
-            (image) => Popular(
-                name: image['description'] ?? searchKey,
-                imagePath: image['urls']['small'],
-                entryPrice: 1.5,
-                sport: image['tags'][0]['title'] ?? '',
-                isFavorite: false,
-                distance: 1.5,
-                rate: 4.8),
-          )
-          .toList();
+      _imageList = imageRepository!.map((image) {
+        bool noAddedYet = ref
+            .watch(favoriteProvider)
+            .where((element) => element.imagePath == image['urls']['small'])
+            .isEmpty;
+        print('--> is Exist $noAddedYet');
+        return Popular(
+            name: image['description'] ?? searchKey,
+            imagePath: image['urls']['small'],
+            entryPrice: 1.5,
+            sport: image['tags'][0]['title'] ?? '',
+            isFavorite: noAddedYet,
+            distance: 1.5,
+            rate: 4.8);
+      }).toList();
     });
   }
 

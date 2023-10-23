@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
 
 import '../models/popular.dart';
-import '../screens/categories/sub_category.dart';
 
 class BookingCard extends StatelessWidget {
   const BookingCard({super.key, required this.category});
@@ -56,7 +55,7 @@ class BookingCard extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            context.push(RoutesLocation.bookingDetails);
+            context.push(AppRoutes.bookingDetails, extra: category);
           },
           icon: SizedBox.square(
             dimension: 16,

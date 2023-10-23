@@ -52,14 +52,13 @@ class HomeScreen extends StatelessWidget {
                             RolaGradientButton(
                                 label: 'Sign up',
                                 changeToWhite: true,
-                                onTap: () =>
-                                    context.push(RoutesLocation.signup)),
+                                onTap: () => context.push(AppRoutes.signup)),
                             const SizedBox(
                               height: 16,
                             ),
                             RolaGradientButton(
                               label: 'Login',
-                              onTap: () => context.push(RoutesLocation.login),
+                              onTap: () => context.push(AppRoutes.login),
                             ),
                             const SizedBox(
                               height: 100,

@@ -7,7 +7,6 @@ import '../../styles/colors.dart';
 import '../../widget/booking_card.dart';
 import '../../widget/bottom_navigation_bar.dart';
 import '../../widget/filed_button_list.dart';
-import '../categories/sub_category.dart';
 
 class WithBookingScreen extends ConsumerStatefulWidget {
   const WithBookingScreen(this.favorites, {super.key});
@@ -96,9 +95,11 @@ class _WithBookingScreenState extends ConsumerState<WithBookingScreen> {
               const SizedBox(
                 height: 16,
               ),
-              BookingCard(
-                category: category,
-              ),
+              ...widget.favorites.map(
+                (e) => BookingCard(
+                  category: e,
+                ),
+              )
             ],
           ),
         ),

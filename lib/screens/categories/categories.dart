@@ -95,7 +95,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                             child: RolaGradientButton(
                               label: 'Explore',
                               changeToWhite: true,
-                              onTap: () => context.push(RoutesLocation.search),
+                              onTap: () => context.push(AppRoutes.search),
                             ),
                           ),
                           const SizedBox(
