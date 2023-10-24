@@ -12,6 +12,11 @@ class SvgAssets {
   static String searchAlt = "$mainAssetsFolder/search_alt.svg";
 }
 
+class LottieAssets {
+  static const String _mainAssetsFolder = 'assets/images/lottie';
+  static String booked = "$_mainAssetsFolder/booked_blue.json";
+}
+
 class PngAssets {
   static String mainAssetsFolder = 'assets/images/png';
   static String backgroundLayingOnTheFloor = "$mainAssetsFolder/background.png";

@@ -1,6 +1,7 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rola_app/models/bookings.dart';
 
 import '../../models/popular.dart';
 import '../../styles/colors.dart';
@@ -9,8 +10,8 @@ import '../../widget/bottom_navigation_bar.dart';
 import '../../widget/filed_button_list.dart';
 
 class WithBookingScreen extends ConsumerStatefulWidget {
-  const WithBookingScreen(this.favorites, {super.key});
-  final List<Popular> favorites;
+  const WithBookingScreen(this.bookings, {super.key});
+  final List<Booking> bookings;
 
   @override
   ConsumerState<WithBookingScreen> createState() => _WithBookingScreenState();
@@ -26,7 +27,7 @@ class _WithBookingScreenState extends ConsumerState<WithBookingScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    var category = widget.favorites.first;
+    var category = widget.bookings.first;
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 200,
@@ -95,9 +96,9 @@ class _WithBookingScreenState extends ConsumerState<WithBookingScreen> {
               const SizedBox(
                 height: 16,
               ),
-              ...widget.favorites.map(
+              ...widget.bookings.map(
                 (e) => BookingCard(
-                  category: e,
+                  booking: e,
                 ),
               )
             ],

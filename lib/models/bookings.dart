@@ -7,7 +7,8 @@ const uuid = Uuid();
 @JsonSerializable()
 class Booking {
   Booking(
-      {required this.imagePath,
+      {required this.time,
+      required this.imagePath,
       required this.name,
       required this.entryPrice,
       required this.sport,
@@ -26,6 +27,7 @@ class Booking {
   final double rate;
   final bool isFavorite;
   final DateTime date;
+  final String time;
 
   factory Booking.fromJson(Map<String, dynamic> json) =>
       _$BookingFromJson(json);

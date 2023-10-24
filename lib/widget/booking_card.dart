@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
+import 'package:rola_app/models/bookings.dart';
 
 import '../models/popular.dart';
 
 class BookingCard extends StatelessWidget {
-  const BookingCard({super.key, required this.category});
-  final Popular category;
+  const BookingCard({super.key, required this.booking});
+  final Booking booking;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,7 +20,7 @@ class BookingCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.network(
-                  category.imagePath,
+                  booking.imagePath,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -34,7 +35,7 @@ class BookingCard extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   child: Text(
-                    category.name,
+                    booking.name,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
                         .textTheme
@@ -55,7 +56,7 @@ class BookingCard extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            context.push(AppRoutes.bookingDetails, extra: category);
+            context.push(AppRoutes.bookingDetails, extra: booking);
           },
           icon: SizedBox.square(
             dimension: 16,

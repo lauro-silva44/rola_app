@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:rola_app/models/bookings.dart';
 
 class FireStoreService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -39,5 +39,28 @@ class FireStoreService {
     //     print('DocumentSnapshot added with ID: ${doc.id}'));
   }
 
-  Future<void> createBooking() async {}
+  Future<void> createBooking(Booking booking) async {
+    try {
+      await _db.collection('bookings').add(booking.toJson()).then(
+            (value) => log('booked ${value.id}'),
+          );
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<List?> getBookings() async {
+    try {
+      var list = [];
+      await _db.collection('bookings').get().then((value) {
+        for (var docSnapshot in value.docs) {
+          list.add(docSnapshot.data());
+        }
+      });
+      return list;
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
 }

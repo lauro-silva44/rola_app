@@ -1,13 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
+import 'package:rola_app/config/routes/routes_location.dart';
+import 'package:rola_app/models/bookings.dart';
 import 'package:rola_app/providers/favorites_provider.dart';
+import 'package:rola_app/styles/images.dart';
 import 'package:rola_app/widget/gradient_button.dart';
 import 'package:rola_app/widget/rola_dropdown.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../models/popular.dart';
+import '../../providers/bookings.dart';
 import '../../styles/colors.dart';
 
 class DetailsScreen extends ConsumerStatefulWidget {
@@ -24,6 +28,8 @@ class DetailsScreen extends ConsumerStatefulWidget {
 }
 
 class _DetailsScreenState extends ConsumerState<DetailsScreen> {
+  final _note = TextEditingController();
+  var _choosedTime = '';
   final _timeChips = [
     ['03:00 PM', false],
     ['04:00 PM', false],
@@ -36,9 +42,41 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
   String _finalPrice = '0';
 
   var _focusedDay = DateTime.now();
+
+  showBookedDialog(BuildContext context) => showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.push(AppRoutes.bookings);
+              },
+              child: Text(
+                'ok',
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: ColorSystem.blue,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [Lottie.asset(LottieAssets.booked)],
+          ),
+        );
+      });
+  @override
+  void dispose() {
+    super.dispose();
+    _note.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isFavorite = ref.watch(favoriteProvider).contains(widget.info);
+
     return Scaffold(
       body: CustomScrollView(slivers: [
         SliverAppBar(
@@ -225,7 +263,6 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                             onDaySelected: (date1, date2) {
                               setState(() {
                                 _focusedDay = date1;
-                                log(_focusedDay.toString());
                               });
                             },
                           ),
@@ -263,6 +300,7 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                                       onPressed: () {
                                         setState(() {
                                           e[1] = !(e[1] as bool);
+                                          _choosedTime = e[0] as String;
                                         });
                                       },
                                     ),
@@ -274,6 +312,7 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                         SizedBox(
                           height: 120,
                           child: TextField(
+                            controller: _note,
                             textAlignVertical: TextAlignVertical.top,
                             expands: true,
                             maxLines: null,
@@ -385,7 +424,31 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                 ],
               ),
             ),
-            const Expanded(child: RolaGradientButton(label: 'Reserve'))
+            Expanded(
+              child: RolaGradientButton(
+                label: 'Reserve',
+                onTap: () async {
+                  var booking = Booking(
+                      time: _choosedTime,
+                      imagePath: widget.info.imagePath,
+                      name: _note.text.isEmpty ? widget.info.name : _note.text,
+                      entryPrice: (double.parse(_finalPrice) / 2),
+                      sport: widget.info.sport,
+                      distance: widget.info.distance,
+                      rate: widget.info.rate,
+                      isFavorite: isFavorite,
+                      date: _focusedDay);
+                  bool resp =
+                      await ref.read(bookingProvider.notifier).book(booking);
+                  if (resp && context.mounted) {
+                    showBookedDialog(context);
+                    await ref.read(bookingProvider.notifier).getBooking();
+                  } else {
+                    return;
+                  }
+                },
+              ),
+            )
           ],
         ),
       ),

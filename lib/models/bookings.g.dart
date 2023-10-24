@@ -7,6 +7,7 @@ part of 'bookings.dart';
 // **************************************************************************
 
 Booking _$BookingFromJson(Map<String, dynamic> json) => Booking(
+      time: json['time'] ?? "",
       imagePath: json['imagePath'] as String,
       name: json['name'] as String,
       entryPrice: (json['entryPrice'] as num).toDouble(),
@@ -28,4 +29,5 @@ Map<String, dynamic> _$BookingToJson(Booking instance) => <String, dynamic>{
       'rate': instance.rate,
       'isFavorite': instance.isFavorite,
       'date': instance.date.toIso8601String(),
+      'time': instance.time,
     };
