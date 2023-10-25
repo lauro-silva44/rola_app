@@ -1,11 +1,13 @@
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
+import 'package:rola_app/models/bookings.dart';
 import 'package:rola_app/screens/bookings/booking_details.dart';
 import 'package:rola_app/screens/bookings/bookings.dart';
 import 'package:rola_app/screens/categories/categories.dart';
 import 'package:rola_app/screens/details/details.dart';
 import 'package:rola_app/screens/login/login_second.dart';
 import 'package:rola_app/screens/onboarding/on_boarding_first.dart';
+import 'package:rola_app/screens/profile/profile.dart';
 import 'package:rola_app/screens/search/search.dart';
 import 'package:rola_app/screens/signup/signup.dart';
 
@@ -63,7 +65,11 @@ final routes = [
   GoRoute(
     path: AppRoutes.bookingDetails,
     builder: (ctx, state) => BookingDetailsScreen(
-      info: state.extra as Popular,
+      info: state.extra as Booking,
     ),
+  ),
+  GoRoute(
+    path: AppRoutes.profile,
+    builder: (ctx, state) => const ProfileScreen(),
   ),
 ];

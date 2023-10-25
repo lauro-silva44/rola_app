@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:rola_app/models/bookings.dart';
 import 'package:rola_app/styles/colors.dart';
-
-import '../../models/popular.dart';
 
 class BookingDetailsScreen extends StatelessWidget {
   const BookingDetailsScreen({super.key, required this.info});
-  final Popular info;
+  final Booking info;
 
   @override
   Widget build(BuildContext context) {
-    String backgroundImagePath =
-        'https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MTE5MTJ8MHwxfHNlYXJjaHwxfHxnYW1pbmctY2hhbXBpb25zaGlwLW5lb258ZW58MHx8fHwxNjk3ODAzMDk4fDA&ixlib=rb-4.0.3&q=80&w=400';
+    var bookingDate = DateFormat.yMd('en_US').format(info.date).toString();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -67,7 +66,7 @@ class BookingDetailsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      'Booking registered on 12/12/2021 05:00 PM • #9810941',
+                      'Booking registered on $bookingDate ${info.time} • #9810941',
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge!
@@ -112,7 +111,7 @@ class BookingDetailsScreen extends StatelessWidget {
                                               fontSize: 14)),
                                 ),
                                 Text(
-                                  'Dance class for 2',
+                                  info.sport,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyLarge!
@@ -122,7 +121,7 @@ class BookingDetailsScreen extends StatelessWidget {
                                           fontSize: 12),
                                 ),
                                 Text(
-                                  'Wednesday',
+                                  DateFormat('EEEE').format(info.date),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyLarge!

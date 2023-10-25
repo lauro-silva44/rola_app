@@ -15,6 +15,7 @@ class _State extends ConsumerState<BookingsScreen> {
   @override
   void initState() {
     super.initState();
+    ref.read(bookingProvider.notifier).getBooking();
   }
 
   @override

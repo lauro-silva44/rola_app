@@ -1,14 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
-import 'package:rola_app/screens/onboarding/book_in_seconds.dart';
-import 'package:rola_app/screens/onboarding/get_your_game_on.dart';
-import 'package:rola_app/screens/onboarding/invite_friends.dart';
 import 'package:rola_app/screens/onboarding/on_boarding_widget.dart';
-import 'package:rola_app/screens/onboarding/rate_review_rewards.dart';
 import 'package:rola_app/styles/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

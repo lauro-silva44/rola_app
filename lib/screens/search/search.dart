@@ -41,7 +41,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             .watch(favoriteProvider)
             .where((element) => element.imagePath == image['urls']['small'])
             .isEmpty;
-        print('--> is Exist $noAddedYet');
         return Popular(
             name: image['description'] ?? searchKey,
             imagePath: image['urls']['small'],

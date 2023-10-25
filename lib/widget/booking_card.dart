@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
 import 'package:rola_app/models/bookings.dart';
-
-import '../models/popular.dart';
 
 class BookingCard extends StatelessWidget {
   const BookingCard({super.key, required this.booking});
@@ -44,7 +43,7 @@ class BookingCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 venues',
+                  '${DateFormat.yMd('en_US').format(booking.date).toString()} - ${booking.time.trim()}',
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!

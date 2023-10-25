@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rola_app/models/bookings.dart';
 
@@ -19,8 +17,8 @@ class BookingProvider extends StateNotifier<List<Booking>> {
           .toList();
       return false;
     } else {
-      state = [...state, booking];
       await _service.createBooking(booking);
+      await getBooking();
       return true;
     }
   }

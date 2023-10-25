@@ -43,34 +43,51 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
 
   var _focusedDay = DateTime.now();
 
-  showBookedDialog(BuildContext context) => showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          actions: [
-            TextButton(
-              onPressed: () {
-                context.push(AppRoutes.bookings);
-              },
-              child: Text(
-                'ok',
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: ColorSystem.blue,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
+  showBookedDialog(BuildContext context,
+          {String lottie = LottieAssets.booked,
+          bool error = false,
+          String? errorDescription,
+          void Function()? onPressed}) =>
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              actions: [
+                TextButton(
+                  onPressed: onPressed ??
+                      () {
+                        context.push(
+                            error ? AppRoutes.explore : AppRoutes.bookings);
+                      },
+                  child: Text(
+                    'ok',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: ColorSystem.blue,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Lottie.asset(lottie),
+                  if (error)
+                    Text(
+                      errorDescription ?? 'Already booked!',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(fontSize: 18),
+                    )
+                ],
               ),
-            )
-          ],
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [Lottie.asset(LottieAssets.booked)],
-          ),
-        );
-      });
+            );
+          });
   @override
   void dispose() {
-    super.dispose();
     _note.dispose();
+    super.dispose();
   }
 
   @override
@@ -89,7 +106,7 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
               Icons.arrow_back,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           pinned: true,
@@ -438,13 +455,24 @@ class _DetailsScreenState extends ConsumerState<DetailsScreen> {
                       rate: widget.info.rate,
                       isFavorite: isFavorite,
                       date: _focusedDay);
+                  if (_choosedTime.trim().isEmpty && context.mounted) {
+                    showBookedDialog(context,
+                        lottie: LottieAssets.error,
+                        error: true,
+                        onPressed: () => context.pop(),
+                        errorDescription: 'please choose time');
+                    return;
+                  }
                   bool resp =
                       await ref.read(bookingProvider.notifier).book(booking);
+
                   if (resp && context.mounted) {
                     showBookedDialog(context);
-                    await ref.read(bookingProvider.notifier).getBooking();
                   } else {
-                    return;
+                    if (context.mounted) {
+                      showBookedDialog(context,
+                          lottie: LottieAssets.error, error: true);
+                    }
                   }
                 },
               ),

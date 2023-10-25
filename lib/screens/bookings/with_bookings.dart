@@ -1,9 +1,7 @@
-import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rola_app/models/bookings.dart';
 
-import '../../models/popular.dart';
 import '../../styles/colors.dart';
 import '../../widget/booking_card.dart';
 import '../../widget/bottom_navigation_bar.dart';
@@ -27,7 +25,6 @@ class _WithBookingScreenState extends ConsumerState<WithBookingScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    var category = widget.bookings.first;
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 200,
@@ -89,16 +86,27 @@ class _WithBookingScreenState extends ConsumerState<WithBookingScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RolaFilledListButton(
                 list: _timeChips,
               ),
-              const SizedBox(
-                height: 16,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  '${widget.bookings.length} Upcoming Bookings',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontWeight: FontWeight.w500, fontSize: 18),
+                ),
               ),
               ...widget.bookings.map(
-                (e) => BookingCard(
-                  booking: e,
+                (e) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: BookingCard(
+                    booking: e,
+                  ),
                 ),
               )
             ],
