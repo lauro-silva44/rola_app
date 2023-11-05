@@ -97,10 +97,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 16,
                   ),
-                  const RolaGradientButton(label: 'Sign up'),
-                  TextButton(
-                    onPressed: () async {
-                      log('Here');
+                  RolaGradientButton(
+                    label: 'Sign up',
+                    onTap: () async {
+                      log('inside');
                       if (_passwordConfirmation.text.trim() ==
                               _password.text.trim() &&
                           EmailValidator.validate(_email.text.trim())) {
@@ -109,6 +109,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         log('user created');
                       }
                     },
+                  ),
+                  TextButton(
+                    onPressed: () {},
                     child: Text(
                       'Forgot Password?',
                       textAlign: TextAlign.center,

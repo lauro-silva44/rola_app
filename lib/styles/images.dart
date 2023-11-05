@@ -41,4 +41,5 @@ class PngAssets {
   static String vrRealm = "$_mainAssetsFolder/vrRealm.png";
   static String largeBanner = "$_mainAssetsFolder/largeBanner.png";
   static String noBookingBanner = "$_mainAssetsFolder/noBookingBanner.png";
+  static String profile = "$_mainAssetsFolder/profile.png";
 }

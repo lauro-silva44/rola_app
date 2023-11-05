@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rola_app/config/routes/routes_location.dart';
 import 'package:rola_app/models/popular.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class SubCategoryCard extends StatelessWidget {
+import '../providers/favorites_provider.dart';
+
+class SubCategoryCard extends ConsumerWidget {
   const SubCategoryCard({super.key, required this.info});
   final Popular info;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isFavorite = ref
+        .watch(favoriteProvider)
+        .where((element) => element.imagePath == info.imagePath)
+        .isNotEmpty;
     return InkWell(
       onTap: () => context.push(AppRoutes.details, extra: info),
       child: Padding(
@@ -38,8 +45,13 @@ class SubCategoryCard extends StatelessWidget {
                     top: 8,
                     right: 8,
                     child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.favorite_border),
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        key: ValueKey(isFavorite),
+                      ),
+                      onPressed: () {
+                        ref.read(favoriteProvider.notifier).addPopular(info);
+                      },
                     ),
                   )
                 ],

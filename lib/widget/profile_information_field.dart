@@ -4,9 +4,13 @@ import '../styles/colors.dart';
 
 class ProfileInformationField extends StatelessWidget {
   const ProfileInformationField(
-      {super.key, required this.fieldName, required this.description});
+      {super.key,
+      required this.fieldName,
+      required this.description,
+      this.onPressed});
   final String fieldName;
   final String description;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,7 +43,7 @@ class ProfileInformationField extends StatelessWidget {
                 size: 16,
                 color: Colors.grey.shade700,
               ),
-              onPressed: () {},
+              onPressed: onPressed ?? () {},
             ),
           ],
         ),

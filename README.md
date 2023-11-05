@@ -38,3 +38,11 @@ To run this app locally and explore its codebase, follow these steps:
 <div align="center">
   <img src="assets\github_cover\cover.png">
 </div>
+<div align="center">
+<video  controls autoplay>
+  <source src="assets/github_cover/rola_app.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+

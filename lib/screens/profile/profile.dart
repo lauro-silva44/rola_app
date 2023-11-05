@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rola_app/config/routes/routes_location.dart';
 import 'package:rola_app/styles/colors.dart';
 import 'package:rola_app/widget/bottom_navigation_bar.dart';
 
@@ -37,9 +39,10 @@ class ProfileScreen extends StatelessWidget {
                 fieldName: 'Wallet',
                 description: 'Manage payment methods',
               ),
-              const ProfileInformationField(
+              ProfileInformationField(
                 fieldName: 'Favorites',
                 description: 'Manage favorites',
+                onPressed: () => context.push(AppRoutes.favorites),
               ),
               const ProfileInformationField(
                 fieldName: 'Friends',

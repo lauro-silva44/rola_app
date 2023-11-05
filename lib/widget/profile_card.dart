@@ -23,9 +23,9 @@ class ProfileCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(48),
                 child: Image.asset(
-                  PngAssets.snowboarding,
-                  width: 48,
-                  height: 48,
+                  PngAssets.profile,
+                  width: 55,
+                  height: 55,
                   fit: BoxFit.cover,
                 ),
               ),

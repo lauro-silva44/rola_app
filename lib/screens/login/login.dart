@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rola_app/config/routes/routes_location.dart';
 
 import '../../services/authentication.dart';
 import '../../styles/images.dart';
@@ -17,12 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final AuthService _authService = AuthService();
-
-  @override
-  void initState() {
-    super.initState();
-    // _fireStoreService.book();
-  }
 
   @override
   void dispose() {
@@ -188,7 +184,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(AppRoutes.signup);
+                      },
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

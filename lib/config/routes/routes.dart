@@ -5,6 +5,7 @@ import 'package:rola_app/screens/bookings/booking_details.dart';
 import 'package:rola_app/screens/bookings/bookings.dart';
 import 'package:rola_app/screens/categories/categories.dart';
 import 'package:rola_app/screens/details/details.dart';
+import 'package:rola_app/screens/favorites/favorites.dart';
 import 'package:rola_app/screens/login/login_second.dart';
 import 'package:rola_app/screens/onboarding/on_boarding_first.dart';
 import 'package:rola_app/screens/profile/profile.dart';
@@ -71,5 +72,9 @@ final routes = [
   GoRoute(
     path: AppRoutes.profile,
     builder: (ctx, state) => const ProfileScreen(),
+  ),
+  GoRoute(
+    path: AppRoutes.favorites,
+    builder: (ctx, state) => const FavoriteScreen(),
   ),
 ];

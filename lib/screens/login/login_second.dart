@@ -105,7 +105,9 @@ class _LoginSecondScreenState extends State<LoginSecondScreen> {
                   ),
                   const Divider(),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(AppRoutes.signup);
+                    },
                     child: Text(
                       'Don’t have an account? Sign up',
                       textAlign: TextAlign.center,

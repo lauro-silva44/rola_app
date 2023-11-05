@@ -12,10 +12,6 @@ class FireStoreService {
       {required String email, required String password}) async {
     _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
-
-    //
-    // await _db.collection("users").add(user).then((DocumentReference doc) =>
-    //     print('DocumentSnapshot added with ID: ${doc.id}'));
   }
 
   Future<UserCredential?> login(
@@ -50,6 +46,21 @@ class FireStoreService {
   }
 
   Future<List?> getBookings() async {
+    try {
+      var list = [];
+      await _db.collection('bookings').get().then((value) {
+        for (var docSnapshot in value.docs) {
+          list.add(docSnapshot.data());
+        }
+      });
+      return list;
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
+  Future<List?> addToFavorites() async {
     try {
       var list = [];
       await _db.collection('bookings').get().then((value) {

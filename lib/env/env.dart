@@ -46,8 +46,7 @@ class RolaApp extends StatelessWidget {
         colorScheme: kColorScheme,
         useMaterial3: true,
       ),
-      routerConfig:
-          GoRouter(initialLocation: AppRoutes.profile, routes: routes),
+      routerConfig: GoRouter(initialLocation: AppRoutes.home, routes: routes),
     );
   }
 }

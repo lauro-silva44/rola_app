@@ -23,6 +23,7 @@ class PopularCard extends ConsumerWidget {
       onTap: () => context.push(AppRoutes.details, extra: info),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Stack(
             children: [

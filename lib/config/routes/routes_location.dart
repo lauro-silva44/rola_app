@@ -16,4 +16,5 @@ class AppRoutes {
   static String get bookings => '/bookings';
   static String get bookingDetails => '/booking_details';
   static String get profile => '/profile';
+  static String get favorites => '/favorites';
 }
