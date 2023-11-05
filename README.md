@@ -39,7 +39,7 @@ To run this app locally and explore its codebase, follow these steps:
   <img src="assets\github_cover\cover.png">
 </div>
 <div align="center">
-![](assets/github_cover/rola_gif.gif)
+![](https://github.com/lauro-silva44/rola_app/blob/dev/assets/github_cover/rola_gif.gif)
 
 </div>
 
