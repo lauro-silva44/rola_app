@@ -34,13 +34,11 @@ To run this app locally and explore its codebase, follow these steps:
    ```bash
    flutter run
    ```
-
+<div align="center" >
+  <img src="assets/github_cover/rola_gif.gif" width="100%">
+</div>
 <div align="center">
   <img src="assets\github_cover\cover.png">
 </div>
-
-![](https://github.com/lauro-silva44/rola_app/blob/dev/assets/github_cover/rola_gif.gif)
-
-
 
 
